@@ -1,0 +1,3 @@
+[submodule "zm-dist"]
+	path = zm-dist
+	url = git@github.com:guoaihua/zm-dist.git
