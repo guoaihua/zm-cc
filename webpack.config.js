@@ -50,5 +50,11 @@ module.exports = {
     },
     port: 3000,
     open: ["/index.html"],
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   },
+  resolve: {
+    extensions: ['.js','.jsx','.tsx','.json']
+  }
 };
