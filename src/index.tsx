@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 const container = document.getElementById('app');
 const root = createRoot(container!);
 import { loadScript, loadStyle } from "./utils/index";
+import "tailwindcss/tailwind.css"
 
 
 type a = Window & {
@@ -50,6 +51,9 @@ const App = ()=>{
         console.log((window as unknown as a ).modules)
 
         const modules = (window as unknown as a ).modules
+        if(!modules){
+            return
+        }
         const name = window.location.pathname
         const match = modules.find(i=> name.includes(i?.path))
         const taskQueue = []
@@ -76,8 +80,10 @@ export  const renderFn = (app: any)=>{
 
 root.render(
     <>
-    <div>
-        框架应用层
+    <div className="w-full h-full">
+        <div className="w-40 h-40 bg-blue-400 text-green-200">
+                aaa
+        </div>
     </div>
     <hr />  
     <App />
