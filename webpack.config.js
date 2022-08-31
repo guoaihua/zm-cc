@@ -66,10 +66,10 @@ module.exports = {
     },
   },
   resolve: {
-    extensions: [".js", ".jsx", ".tsx", ".json", ".scss"],
+    extensions: [".js", ".jsx", ".ts" ,".tsx", ".json", ".scss"],
     plugins: [
       new TsconfigPathsPlugin({
-        extensions: [".js", ".jsx", ".tsx", ".json", ".scss"],
+        extensions: [".js", ".jsx", ".ts" , ".tsx", ".json", ".scss"],
       }),
     ],
   },

@@ -1,8 +1,10 @@
 import { Layout, Menu, Row, Col, Card, MenuProps } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import "antd/dist/antd.css";
+import historyAdapter from "./history";
+import matchRoutes from "./matchRoutes";
 
-import  styles from "../style/index.module.scss";
+import styles from "../style/index.module.scss";
 const { Content, Footer } = Layout;
 
 interface AppProps {
@@ -31,11 +33,14 @@ const items = [
     ),
   }, // 菜单项务必填写 key
   { label: "灵感", key: "ideals" },
+  { label: "工作", key: "work" },
 ];
 
 const App: React.FC<AppProps> = (props) => {
-
-
+  useEffect(() => {
+    console.log("app init start");
+    historyAdapter(matchRoutes);
+  }, []);
 
   const renderApps = () => {
     const list = [
@@ -84,10 +89,16 @@ const App: React.FC<AppProps> = (props) => {
       <Layout className="app w-full h-full">
         <Row className="bg-white border-slate-900/10">
           <Col span={24} className=" pl-5 ">
-           <Menu onClick={onClick} items={items} mode='horizontal' style={{ minWidth: 0, flex: "auto" }}></Menu>
+            <Menu
+              onClick={onClick}
+              items={items}
+              mode="horizontal"
+              style={{ minWidth: 0, flex: "auto" }}
+            ></Menu>
           </Col>
         </Row>
         <Content className="h-full bg-green-300/25">{renderApps()}</Content>
+        {props.children}
         <Row>
           <Col span={24} className="text-center text-current py-5 px-3">
             footer is designing
