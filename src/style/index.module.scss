@@ -1,0 +1,11 @@
+.testAaa {
+    font-size: 24px;
+
+    :global .testred {
+        color: red;
+    }
+
+    .f25 {
+        font-size: 25px;
+    }
+}

@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { loader } = require("mini-css-extract-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -14,11 +14,11 @@ module.exports = {
   },
   devtool: "source-map",
   plugins: [
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: "./template/index.html",
       inject: "body",
     }),
-    new MiniCssExtractPlugin(),
   ],
   module: {
     rules: [
@@ -39,7 +39,18 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                auto: true,
+              },
+            },
+          },
+          "sass-loader",
+        ],
       },
     ],
   },
@@ -51,10 +62,15 @@ module.exports = {
     port: 3000,
     open: ["/index.html"],
     headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
+      "Access-Control-Allow-Origin": "*",
+    },
   },
   resolve: {
-    extensions: ['.js','.jsx','.tsx','.json']
-  }
+    extensions: [".js", ".jsx", ".tsx", ".json", ".scss"],
+    plugins: [
+      new TsconfigPathsPlugin({
+        extensions: [".js", ".jsx", ".tsx", ".json", ".scss"],
+      }),
+    ],
+  },
 };

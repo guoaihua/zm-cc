@@ -1,12 +1,17 @@
 // @ts-nocheck
+import "tailwindcss/tailwind.css";
 import { createRoot } from "react-dom/client";
 import React, { useEffect } from "react";
+import App from "@/components/app";
+import { loadScript, loadStyle } from "./utils/index";
+
+
+console.log(111)
 const container = document.getElementById("app");
 const root = createRoot(container!);
-import { loadScript, loadStyle } from "./utils/index";
-import App from "./components/app";
-import "tailwindcss/tailwind.css";
-import "antd/dist/antd.css";
+
+
+
 
 type a = Window & {
   modules: {
